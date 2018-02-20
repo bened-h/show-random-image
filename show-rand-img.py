@@ -26,28 +26,28 @@ while loop: # -------- Main Program Loop -----------
     for event in pygame.event.get():    # User did something
         if event.type == pygame.QUIT:   # If user clicked close
             loop = False
- 
-    screen.fill((0,0,0))    #(0,0,0)==black     #clear screen
-    randomfile = choice(fileslist)  #path as string
-    try: pic = pygame.image.load(randomfile).convert()       # load as image == pygame surface object
-    except pygame.error:
-        print("couldnt load as image:", randomfile)
-        continue
-    
-    #resize image to fit screen
-    pic_size_x,pic_size_y = pic.get_size()
-    ratio = pic_size_x/pic_size_y
-    if pic_size_x > screen_size_x: 
-        pic = pygame.transform.scale(pic, (screen_size_x,int(screen_size_x/ratio)))
-    if pic_size_y > screen_size_y: 
-        pic = pygame.transform.scale(pic, (int(screen_size_y*ratio), screen_size_y))
-    screen.blit(pic, [0,0]) #image, position
-    #print path
-    font = pygame.font.SysFont('Arial', 14, True, False)
-    text = font.render(randomfile, True, (0,0,0))
-    screen.blit(text, [0, 0])
+        elif event.type == pygame.KEYDOWN:  
+            if event.key == pygame.K_SPACE:     # if spacebar
+                screen.fill((0,0,0))    #(0,0,0)==black     #clear screen
+                randomfile = choice(fileslist)  #load random filepath as string
+                try: pic = pygame.image.load(randomfile).convert()       # load as image == pygame surface object
+                except pygame.error:
+                    print("couldnt load as image:", randomfile)
+                    continue    
+                #resize image to fit screen
+                pic_size_x,pic_size_y = pic.get_size()
+                ratio = pic_size_x/pic_size_y
+                if pic_size_x > screen_size_x: 
+                    pic = pygame.transform.scale(pic, (screen_size_x,int(screen_size_x/ratio)))
+                if pic_size_y > screen_size_y: 
+                    pic = pygame.transform.scale(pic, (int(screen_size_y*ratio), screen_size_y))
+                screen.blit(pic, [0,0]) #image, position
+                #print path
+                font = pygame.font.SysFont('Arial', 14, True, False)
+                text = font.render(randomfile, True, (0,0,0))
+                screen.blit(text, [0, 0])
+                
     pygame.display.flip()  # update screen
-    clock.tick(60)      # --- Limit to 1 frames per second
-    sleep(1) #
+    clock.tick(60)      # --- Limit to frames per second
      
 pygame.quit() # Close the window and quit.
