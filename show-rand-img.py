@@ -5,6 +5,7 @@ from time import sleep
 
 class Pic():
     """class to hold the image"""
+    shown_pics = []
     def __init__(self):
         self.surface = None
         self.path=""
@@ -12,6 +13,7 @@ class Pic():
         self.ratio = 0
         self.xdim_original = 0
         self.ydim_original = 0
+        self.shown_pics.append(self)
         
     def fit_to_screen(self, screen_size_x, screen_size_y):
         if self.xdim > screen_size_x: self.surface = pygame.transform.scale(self.surface, (screen_size_x,int(screen_size_x/self.ratio)))
