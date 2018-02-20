@@ -1,6 +1,4 @@
-# show-random-image
-displays a slideshow of all images in a chosen filepath in random order.
+# show-random-image(s)
+displays a slideshow of images in a chosen filepath (incl. subpaths) in random order.
 
 uses module pygame.
-
-
